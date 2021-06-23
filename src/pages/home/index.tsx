@@ -1,6 +1,5 @@
 import "./styles.css";
 import Logo from "../../assets/logo.png";
-// import Search from "../../assets/search.png";
 
 import axios from "axios";
 import { useState } from "react";
@@ -33,22 +32,46 @@ const Home = () => {
 
   const searchRandomCharacter = async () => {
     const random = Math.round(Math.random() * 671);
-    console.log(random);
+    const input = document.querySelector("input");
 
     try {
       await axios
         .get(`https://rickandmortyapi.com/api/character/${random}`)
         .then((response) => {
           setSelectedCharacter(response?.data);
+          input!.value = response.data.name.toString();
         });
     } catch (error) {
       console.log(error);
     }
   };
 
+  const appear = () => {
+    const favorites = document.querySelector(".favorites-container");
+    favorites?.animate([{ transform: "translateY(-500px)" }], {
+      duration: 900,
+      fill: "forwards",
+      easing: "ease-in-out",
+    });
+  };
+
+  const disappear = () => {
+    const favorites = document.querySelector(".favorites-container");
+    favorites?.animate([{ transform: "translateY(500px)" }], {
+      duration: 900,
+      fill: "forwards",
+      easing: "ease-in-out",
+    });
+  };
+
   return (
     <div className="home">
       <img src={Logo} alt="Rick and Morty" />
+      <div className="parent-favorites">
+        <div className="favorites-container">
+          <button onClick={disappear}>X</button>
+        </div>
+      </div>
       <div className="search">
         <div className="display">
           <div className="img-border">
@@ -75,35 +98,44 @@ const Home = () => {
               <span className="search-img"></span>
             </button>
           </div>
-          <button className="favorites-button">Favorites</button>
-          <button className="random-button" onClick={searchRandomCharacter}>
-            Random Character
-          </button>
+          <div className="button-container">
+            <button className="button favorites-button" onClick={appear}>
+              Favorites
+            </button>
+            <button
+              className="button random-button"
+              onClick={searchRandomCharacter}
+            >
+              Random Character
+            </button>
+          </div>
         </div>
         {selectedCharacter.name !== "" ? (
           <div className="info">
             <div className="info-text">
               <h3>Name:</h3>
-              <h4>{selectedCharacter.name}</h4>
+              <h4>{selectedCharacter?.name}</h4>
             </div>
             <div className="info-text">
               <h3>Gender:</h3>
-              <h4>{selectedCharacter.gender}</h4>
+              <h4>{selectedCharacter?.gender}</h4>
             </div>
             <div className="info-text">
               <h3>Species:</h3>
-              <h4>{selectedCharacter.species}</h4>
+              <h4>{selectedCharacter?.species}</h4>
             </div>
             <div className="info-text">
               <h3>Location:</h3>
-              <h4>{selectedCharacter.location.name}</h4>
+              <h4>{selectedCharacter?.location.name}</h4>
             </div>
             <div className="info-text">
               <h3>Status:</h3>
-              <h4>{selectedCharacter.status}</h4>
+              <h4>{selectedCharacter?.status}</h4>
             </div>
-            <div className="info-button-container">
-              <button className="add">Add to your Favorites</button>
+            <div className="button-container">
+              <button className="button add-button">
+                Add to your Favorites
+              </button>
             </div>
           </div>
         ) : (

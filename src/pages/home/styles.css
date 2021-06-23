@@ -33,6 +33,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 20px;
 }
 
 .img-display {
@@ -126,10 +127,9 @@ input:focus {
   transform: rotate(45deg);
 }
 
-.favorites-button {
+.button {
   height: 40px;
-  width: 150px;
-  margin: 20px 0px 30px 0px;
+  width: 200px;
   background-color: white;
   border: 2px solid darkslategray;
   border-radius: 50px;
@@ -140,10 +140,16 @@ input:focus {
   color: #526e2d;
 
   transition: 0.5s;
+  margin: 10px;
 }
 
-.favorites-button:active {
+.button:active {
   background-color: rgb(155, 155, 155);
+}
+
+.favorites-button {
+  width: 140px;
+  margin-right: 0px;
 }
 
 .info {
@@ -173,28 +179,33 @@ input:focus {
   margin: 2px 0px 0px 10px;
 }
 
-.info-button-container {
+.button-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.info .add {
-  height: 40px;
+.info .add-button {
   width: 250px;
   margin-top: 15px;
-  background-color: white;
-  border: 2px solid darkslategray;
-  border-radius: 50px;
-
-  font-size: 20px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 600;
-  color: #526e2d;
-
-  transition: 0.5s;
 }
 
-.info .add:active {
-  background-color: rgb(155, 155, 155);
+.parent-favorites {
+  pointer-events: none;
+  height: 450px;
+  width: 850px;
+  overflow: hidden;
+  position: absolute;
+  top: 148px;
+}
+
+.favorites-container {
+  pointer-events: all;
+  position: absolute;
+  top: 500px;
+  z-index: 99;
+  height: 450px;
+  width: 850px;
+  border-radius: 10px;
+  background-color: rgba(100, 100, 100, 0.8);
 }
