@@ -5,7 +5,10 @@ import Remove from "../../assets/remove.png";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFavorite } from "../../store/modules/favorites/actions";
+import {
+  setFavorite,
+  removeFavorite,
+} from "../../store/modules/favorites/actions";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -74,7 +77,7 @@ const Home = () => {
   const disappear = () => {
     const favorites = document.querySelector(".favorites-container");
     favorites?.animate([{ transform: "translateY(500px)" }], {
-      duration: 900,
+      duration: 500,
       fill: "forwards",
       easing: "ease-in-out",
     });
@@ -84,10 +87,9 @@ const Home = () => {
     dispatch(setFavorite(selectedCharacter));
   };
 
-  // const seeFavorite = () => {
-  //   setSelectedCharacter();
-  //   disappear();
-  // };
+  const removeFromFavorites = async (character) => {
+    dispatch(removeFavorite(character));
+  };
 
   return (
     <div className="home">
@@ -103,21 +105,35 @@ const Home = () => {
                 <div
                   key={character.id}
                   className="favorites-card"
-                  onClick={() => {
-                    setSelectedCharacter(character);
-                    disappear();
-                  }}
+                  id={character.id}
                 >
                   <img
                     src={character.image}
                     className="favorites-image"
+                    onClick={() => {
+                      setSelectedCharacter(character);
+                      disappear();
+                    }}
                     alt="Character"
                   />
 
-                  <div className="info-list">
+                  <div
+                    className="info-list"
+                    onClick={() => {
+                      setSelectedCharacter(character);
+                      disappear();
+                    }}
+                  >
                     <h4>{character.name}</h4>
                   </div>
-                  <img src={Remove} className="remove" alt="remove" />
+                  <img
+                    src={Remove}
+                    className="remove"
+                    onClick={() => {
+                      removeFromFavorites(character);
+                    }}
+                    alt="remove"
+                  />
                 </div>
               );
             })}

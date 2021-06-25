@@ -4,3 +4,10 @@ export function setFavorite(selectedCharacter) {
     selectedCharacter,
   };
 }
+
+export function removeFavorite(selectedCharacter) {
+  return {
+    type: "REMOVE_FAVORITE",
+    selectedCharacter,
+  };
+}

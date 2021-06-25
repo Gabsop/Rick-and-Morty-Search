@@ -13,10 +13,21 @@ function favorites(state = INITIAL_STATE, action) {
         );
         if (index < 0) {
           draft.characters.push(action.selectedCharacter);
-          localStorage.setItem(
-            "FavoritedCharacters",
-            JSON.stringify(draft.characters)
-          );
+          // localStorage.setItem(
+          //   "FavoritedCharacters",
+          //   JSON.stringify(draft.characters)
+          // );
+        }
+      });
+    }
+
+    case "REMOVE_FAVORITE": {
+      return produce(state, (draft) => {
+        const index = draft.characters.findIndex(
+          (character) => character.id === action.selectedCharacter.id
+        );
+        if (index >= 0) {
+          draft.characters.splice(index, 1);
         }
       });
     }

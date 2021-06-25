@@ -264,6 +264,7 @@ input:focus {
 }
 
 .favorites-card .remove {
+  pointer-events: all;
   position: relative;
   height: 13px;
   width: 13px;
