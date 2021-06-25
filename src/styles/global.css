@@ -5,7 +5,12 @@
 html,
 body {
   overflow-x: hidden;
-  background-color: #022244;
+  background-color: #00545f;
+  animation-name: backgroundChange;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: both;
 }
 
 h1,

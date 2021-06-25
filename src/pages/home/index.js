@@ -1,6 +1,7 @@
 import "./styles.css";
 import Logo from "../../assets/logo.png";
 import Remove from "../../assets/remove.png";
+import Empty from "../../assets/empty.png";
 
 import axios from "axios";
 import { useState } from "react";
@@ -100,43 +101,50 @@ const Home = () => {
             <h3 className="title">Favorites</h3>
           </div>
           <div className="favorites-list">
-            {characters.map((character) => {
-              return (
-                <div
-                  key={character.id}
-                  className="favorites-card"
-                  id={character.id}
-                >
-                  <img
-                    src={character.image}
-                    className="favorites-image"
-                    onClick={() => {
-                      setSelectedCharacter(character);
-                      disappear();
-                    }}
-                    alt="Character"
-                  />
-
+            {characters.length ? (
+              characters.map((character) => {
+                return (
                   <div
-                    className="info-list"
-                    onClick={() => {
-                      setSelectedCharacter(character);
-                      disappear();
-                    }}
+                    key={character.id}
+                    className="favorites-card"
+                    id={character.id}
                   >
-                    <h4>{character.name}</h4>
+                    <img
+                      src={character.image}
+                      className="favorites-image"
+                      onClick={() => {
+                        setSelectedCharacter(character);
+                        disappear();
+                      }}
+                      alt="Character"
+                    />
+
+                    <div
+                      className="info-list"
+                      onClick={() => {
+                        setSelectedCharacter(character);
+                        disappear();
+                      }}
+                    >
+                      <h4>{character.name}</h4>
+                    </div>
+                    <img
+                      src={Remove}
+                      className="remove"
+                      onClick={() => {
+                        removeFromFavorites(character);
+                      }}
+                      alt="remove"
+                    />
                   </div>
-                  <img
-                    src={Remove}
-                    className="remove"
-                    onClick={() => {
-                      removeFromFavorites(character);
-                    }}
-                    alt="remove"
-                  />
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="no-favorites">
+                <img src={Empty} alt="no favorites" />
+                <h4>You have no favorites. Why are you here?</h4>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -162,7 +170,7 @@ const Home = () => {
               placeholder="Find Character..."
               className="search-input"
             />
-            <button type="submit" className="search-button">
+            <button type="submit" className="button search-button">
               <span className="search-img"></span>
             </button>
           </form>
