@@ -45,6 +45,7 @@
   background-color: white;
   border: 3px solid darkslategray;
   border-radius: 15px;
+  overflow: hidden;
 }
 
 .img-border {
@@ -191,12 +192,18 @@ input:focus {
 }
 
 .parent-favorites {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   pointer-events: none;
+
   height: 450px;
-  width: 850px;
-  overflow: hidden;
+  width: 950px;
   position: absolute;
   top: 148px;
+
+  overflow: hidden;
 }
 
 .favorites-container {
@@ -207,5 +214,101 @@ input:focus {
   height: 450px;
   width: 850px;
   border-radius: 10px;
-  background-color: rgba(100, 100, 100, 0.8);
+  background-color: #32abc7;
+  overflow: auto;
+}
+
+.favorites-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1d94a;
+  height: 70px;
+
+  top: 0;
+  margin-bottom: 10px;
+}
+
+.favorites-container .title {
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 25px;
+  color: darkslategray;
+
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.favorites-list {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px 150px;
+  gap: 15px;
+
+  grid-auto-columns: 150px;
+
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.favorites-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 150px;
+  background-color: #d1d94a;
+  border-radius: 15px;
+}
+
+.favorites-card .remove {
+  position: relative;
+  height: 13px;
+  width: 13px;
+  top: -145px;
+  left: 60px;
+}
+
+.favorites-card .favorites-image {
+  margin-top: 30px;
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  border: 2px solid darkslategray;
+}
+
+.info-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 150px;
+}
+
+.info-list h4 {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: darkslategray;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #27889e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d94a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9fa533;
 }

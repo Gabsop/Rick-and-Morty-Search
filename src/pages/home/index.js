@@ -1,10 +1,17 @@
 import "./styles.css";
 import Logo from "../../assets/logo.png";
+import Remove from "../../assets/remove.png";
 
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavorite } from "../../store/modules/favorites/actions";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const { characters } = useSelector((state) => state.favorites);
+
   const [selectedCharacter, setSelectedCharacter] = useState({
     name: "",
     gender: "",
@@ -16,7 +23,8 @@ const Home = () => {
     image: "",
   });
 
-  const searchCharacter = async () => {
+  const searchCharacter = async (event) => {
+    event.preventDefault();
     const input = document.querySelector("input");
 
     try {
@@ -28,10 +36,18 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
+
+    const index = characters.findIndex(
+      (character) => character.name === selectedCharacter.name
+    );
+    if (!index < 0) {
+      const button = document.querySelector(".add-button");
+      button.textContent = "Add to Favorites";
+    }
   };
 
   const searchRandomCharacter = async () => {
-    const random = Math.round(Math.random() * 671);
+    const random = Math.round(Math.random() * 670 + 1);
     const input = document.querySelector("input");
 
     try {
@@ -39,7 +55,7 @@ const Home = () => {
         .get(`https://rickandmortyapi.com/api/character/${random}`)
         .then((response) => {
           setSelectedCharacter(response?.data);
-          input!.value = response.data.name.toString();
+          input.value = response.data.name.toString();
         });
     } catch (error) {
       console.log(error);
@@ -64,12 +80,48 @@ const Home = () => {
     });
   };
 
+  const addToFavorites = () => {
+    dispatch(setFavorite(selectedCharacter));
+  };
+
+  // const seeFavorite = () => {
+  //   setSelectedCharacter();
+  //   disappear();
+  // };
+
   return (
     <div className="home">
       <img src={Logo} alt="Rick and Morty" />
       <div className="parent-favorites">
         <div className="favorites-container">
-          <button onClick={disappear}>X</button>
+          <div className="favorites-header" onClick={disappear}>
+            <h3 className="title">Favorites</h3>
+          </div>
+          <div className="favorites-list">
+            {characters.map((character) => {
+              return (
+                <div
+                  key={character.id}
+                  className="favorites-card"
+                  onClick={() => {
+                    setSelectedCharacter(character);
+                    disappear();
+                  }}
+                >
+                  <img
+                    src={character.image}
+                    className="favorites-image"
+                    alt="Character"
+                  />
+
+                  <div className="info-list">
+                    <h4>{character.name}</h4>
+                  </div>
+                  <img src={Remove} className="remove" alt="remove" />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="search">
@@ -88,16 +140,16 @@ const Home = () => {
               </div>
             )}
           </div>
-          <div className="search-area">
+          <form className="search-area" onSubmit={searchCharacter}>
             <input
               type="text"
               placeholder="Find Character..."
               className="search-input"
             />
-            <button className="search-button" onClick={searchCharacter}>
+            <button type="submit" className="search-button">
               <span className="search-img"></span>
             </button>
-          </div>
+          </form>
           <div className="button-container">
             <button className="button favorites-button" onClick={appear}>
               Favorites
@@ -133,8 +185,10 @@ const Home = () => {
               <h4>{selectedCharacter?.status}</h4>
             </div>
             <div className="button-container">
-              <button className="button add-button">
-                Add to your Favorites
+              <button className="button add-button" onClick={addToFavorites}>
+                {characters.includes(selectedCharacter)
+                  ? "Favorited"
+                  : "Add to Favorites"}
               </button>
             </div>
           </div>

@@ -7,3 +7,12 @@ body {
   overflow-x: hidden;
   background-color: #022244;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
