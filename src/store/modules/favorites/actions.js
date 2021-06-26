@@ -11,3 +11,9 @@ export function removeFavorite(selectedCharacter) {
     selectedCharacter,
   };
 }
+
+export function getFavorites() {
+  return {
+    type: "GET_FAVORITES",
+  };
+}

@@ -4,9 +4,10 @@ import Remove from "../../assets/remove.png";
 import Empty from "../../assets/empty.png";
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getFavorites,
   setFavorite,
   removeFavorite,
 } from "../../store/modules/favorites/actions";
@@ -27,6 +28,15 @@ const Home = () => {
     image: "",
   });
 
+  useEffect(() => {
+    getLocalfavorites();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getLocalfavorites = () => {
+    dispatch(getFavorites());
+  };
+
   const searchCharacter = async (event) => {
     event.preventDefault();
     const input = document.querySelector("input");
@@ -36,6 +46,7 @@ const Home = () => {
         .get(`https://rickandmortyapi.com/api/character/?name=${input?.value}`)
         .then((response) => {
           setSelectedCharacter(response?.data?.results[0]);
+          input.value = response.data.results[0].name.toString();
         });
     } catch (error) {
       console.log(error);
@@ -81,6 +92,15 @@ const Home = () => {
   };
 
   const removeFromFavorites = async (character) => {
+    const card = document.getElementById(character.id);
+
+    card.animate([{ transform: "scale(1)" }, { transform: "scale(0)" }], {
+      duration: 500,
+      easing: "ease-in-out",
+    });
+
+    await new Promise((resolved) => setTimeout(resolved, 400));
+
     dispatch(removeFavorite(character));
   };
 
