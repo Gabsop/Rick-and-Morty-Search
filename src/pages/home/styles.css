@@ -215,6 +215,27 @@ input:focus {
   border-radius: 10px;
   background-color: #32abc7;
   overflow: auto;
+
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+@keyframes appear {
+  from {
+    top: 500px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes disappear {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 500px;
+  }
 }
 
 .favorites-header {
@@ -392,6 +413,7 @@ input:focus {
 
   .favorites-container {
     height: 800px;
+    top: 900px;
   }
 
   .favorites-container .favorites-list {
@@ -403,6 +425,24 @@ input:focus {
 
   .favorites-container .favorites-list .favorites-card {
     zoom: 1.5;
+  }
+
+  @keyframes appear {
+    from {
+      top: 900px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+
+  @keyframes disappear {
+    from {
+      top: 0px;
+    }
+    to {
+      top: 900px;
+    }
   }
 }
 
@@ -436,6 +476,7 @@ input:focus {
   .favorites-container {
     height: 800px;
     width: 650px;
+    top: 900px;
   }
 
   .favorites-container .favorites-list {
@@ -447,5 +488,23 @@ input:focus {
 
   .favorites-container .favorites-list .favorites-card {
     zoom: 1.3;
+  }
+
+  @keyframes appear {
+    from {
+      top: 900px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+
+  @keyframes disappear {
+    from {
+      top: 0px;
+    }
+    to {
+      top: 900px;
+    }
   }
 }

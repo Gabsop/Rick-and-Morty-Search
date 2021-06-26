@@ -68,20 +68,12 @@ const Home = () => {
 
   const appear = () => {
     const favorites = document.querySelector(".favorites-container");
-    favorites?.animate([{ transform: "translateY(-500px)" }], {
-      duration: 900,
-      fill: "forwards",
-      easing: "ease-in-out",
-    });
+    favorites.style = "animation-name: appear";
   };
 
   const disappear = () => {
     const favorites = document.querySelector(".favorites-container");
-    favorites?.animate([{ transform: "translateY(500px)" }], {
-      duration: 500,
-      fill: "forwards",
-      easing: "ease-in-out",
-    });
+    favorites.style = "animation-name: disappear";
   };
 
   const addToFavorites = () => {
