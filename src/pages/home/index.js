@@ -52,7 +52,7 @@ const Home = () => {
       console.log(error);
     }
 
-    const index = characters.findIndex(
+    const index = characters?.findIndex(
       (character) => character.name === selectedCharacter.name
     );
     if (!index < 0) {
