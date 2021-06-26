@@ -20,6 +20,7 @@
 - A search bar, where you can search the characters by their name
 - Once you search, you can see informations about it, like: status, species, location and etc.
 - You can add characters to your favorites to see them later if you want!
+- Your favorites are saved in your local storage, which means that even if you reload the page or leave, they will be saved!
 
 # Technologies used 🖥
 - :rocket: React, Node, Redux
