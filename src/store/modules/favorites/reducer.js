@@ -17,7 +17,7 @@ function favorites(state = INITIAL_STATE, action) {
 
     case "SET_FAVORITE": {
       return produce(state, (draft) => {
-        const index = draft.characters.findIndex(
+        const index = draft.characters?.findIndex(
           (character) => character.id === action.selectedCharacter.id
         );
         if (index < 0) {
@@ -32,11 +32,11 @@ function favorites(state = INITIAL_STATE, action) {
 
     case "REMOVE_FAVORITE": {
       return produce(state, (draft) => {
-        const index = draft.characters.findIndex(
+        const index = draft.characters?.findIndex(
           (character) => character.id === action.selectedCharacter.id
         );
         if (index >= 0) {
-          draft.characters.splice(index, 1);
+          draft.characters?.splice(index, 1);
           localStorage.removeItem("FavoritedCharacters");
           localStorage.setItem(
             "FavoritedCharacters",
