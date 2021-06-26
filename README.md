@@ -12,8 +12,6 @@
 ![image](https://github.com/Gabsop/Rick-and-Morty-Search/blob/main/public/screenshots/screenshot2.png)
 
 ![image](https://github.com/Gabsop/Rick-and-Morty-Search/blob/main/public/screenshots/screenshot3.png)
-
-![image](https://github.com/Gabsop/Rick-and-Morty-Search/blob/main/public/screenshots/screenshot4.png)
   
 # Features ✔️
 - It is responsive! You can use it in all your devices (or just resize the page to see it 😄)
