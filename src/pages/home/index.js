@@ -222,7 +222,7 @@ const Home = () => {
             </div>
             <div className="button-container">
               <button className="button add-button" onClick={addToFavorites}>
-                {characters.includes(selectedCharacter)
+                {characters?.includes(selectedCharacter)
                   ? "Favorited"
                   : "Add to Favorites"}
               </button>
