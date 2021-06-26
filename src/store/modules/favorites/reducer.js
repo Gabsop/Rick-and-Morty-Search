@@ -11,7 +11,9 @@ function favorites(state = INITIAL_STATE, action) {
         var localCharacters = JSON.parse(
           localStorage.getItem("FavoritedCharacters")
         );
-        draft.characters = localCharacters;
+        if (localCharacters) {
+          draft.characters = localCharacters;
+        }
       });
     }
 
