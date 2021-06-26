@@ -113,8 +113,8 @@ const Home = () => {
             <h3 className="title">Favorites</h3>
           </div>
           <div className="favorites-list">
-            {characters.length ? (
-              characters.map((character) => {
+            {characters?.length ? (
+              characters?.map((character) => {
                 return (
                   <div
                     key={character.id}
